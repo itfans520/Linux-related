@@ -1,0 +1,13 @@
+ssh-keygen -t rsa
+
+一路回车，不需要输入密码
+执行该操作将在/home/user/.ssh下生成id_rsa, id_rsa.pub文件，其中id_rsa.pub是公钥。
+
+cat A.id_rsa.pub > authorized_keys
+
+修改服务器的/etc/ssh/sshd_config配置文件
+RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile %h/.ssh/authorized_keys
+
+复制私钥信息到本地即可
